@@ -8,11 +8,17 @@ let lastWarningCount = 0;
 export function activate(context: vscode.ExtensionContext) {
     console.log('Copilot Session Health extension is now active');
 
-    // Initialize session tracking
-    sessionStartTime = new Date();
-    
     // Restore message count from workspace state
     messageCount = context.workspaceState.get('copilot.messageCount', 0);
+    
+    // Restore or initialize session start time
+    const savedStartTime = context.workspaceState.get<string>('copilot.sessionStartTime');
+    sessionStartTime = savedStartTime ? new Date(savedStartTime) : new Date();
+    
+    // Save initial session start time if not already saved
+    if (!savedStartTime) {
+        context.workspaceState.update('copilot.sessionStartTime', sessionStartTime.toISOString());
+    }
     
     // Create status bar item
     statusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 100);
@@ -181,6 +187,7 @@ function resetSessionCount(context: vscode.ExtensionContext) {
     sessionStartTime = new Date();
     lastWarningCount = 0;
     context.workspaceState.update('copilot.messageCount', messageCount);
+    context.workspaceState.update('copilot.sessionStartTime', sessionStartTime.toISOString());
     updateStatusBar();
     vscode.window.showInformationMessage('Chat session count reset successfully!');
 }
@@ -194,8 +201,10 @@ function getDurationString(): string {
     
     if (hours > 0) {
         return `${hours}h ${minutes}m`;
-    } else {
+    } else if (minutes > 0) {
         return `${minutes}m`;
+    } else {
+        return '< 1m';
     }
 }
 
