@@ -1,0 +1,72 @@
+{
+  "name": "copilot-handoff",
+  "displayName": "Copilot Chat Session Health",
+  "description": "Track GitHub Copilot chat session health and prevent context window exhaustion",
+  "version": "1.0.0",
+  "publisher": "copilot-handoff",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "copilot-handoff.exportSessionSummary",
+        "title": "Copilot: Export Session Summary"
+      },
+      {
+        "command": "copilot-handoff.resetSessionCount",
+        "title": "Copilot: Reset Session Count"
+      }
+    ],
+    "configuration": {
+      "title": "Copilot Session Health",
+      "properties": {
+        "copilot-handoff.messageThreshold": {
+          "type": "number",
+          "default": 20,
+          "description": "Number of messages before warning about context degradation",
+          "minimum": 1
+        },
+        "copilot-handoff.enableTracking": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable chat session message tracking"
+        },
+        "copilot-handoff.showStatusBar": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show message count in status bar"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "eslint src --ext ts"
+  },
+  "devDependencies": {
+    "@types/node": "^20.x",
+    "@types/vscode": "^1.85.0",
+    "@typescript-eslint/eslint-plugin": "^6.x",
+    "@typescript-eslint/parser": "^6.x",
+    "eslint": "^8.x",
+    "typescript": "^5.3.0"
+  },
+  "keywords": [
+    "copilot",
+    "chat",
+    "session",
+    "context",
+    "health"
+  ],
+  "license": "ISC"
+}
