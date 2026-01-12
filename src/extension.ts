@@ -132,7 +132,7 @@ function checkThreshold() {
     }
 }
 
-async function exportSessionSummary(context: vscode.ExtensionContext) {
+async function exportSessionSummary(_context: vscode.ExtensionContext) {
     const config = vscode.workspace.getConfiguration('copilot-handoff');
     const threshold = config.get<number>('messageThreshold', 20);
     
