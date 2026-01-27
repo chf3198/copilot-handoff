@@ -1,0 +1,15 @@
+# Discussions are welcome!
+# Enable GitHub Discussions in your repository settings
+# This file serves as documentation for community discussions
+
+blank_issues_enabled: true
+contact_links:
+  - name: 💬 GitHub Discussions
+    url: https://github.com/chf3198/copilot-handoff/discussions
+    about: Ask questions and discuss ideas with the community
+  - name: 📖 Documentation
+    url: https://github.com/chf3198/copilot-handoff#readme
+    about: Read the full documentation
+  - name: 🚀 Quick Start Guide
+    url: https://github.com/chf3198/copilot-handoff/blob/main/QUICKSTART.md
+    about: Get started in 2 minutes

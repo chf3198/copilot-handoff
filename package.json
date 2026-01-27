@@ -1,0 +1,120 @@
+{
+  "name": "copilot-handoff",
+  "displayName": "Copilot Handoff",
+  "description": "🤝 Track GitHub Copilot chat session duration and get timely reminders for context-preserving handoffs. Prevent context degradation!",
+  "version": "0.1.0",
+  "publisher": "curtisfranks",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other",
+    "Machine Learning"
+  ],
+  "keywords": [
+    "copilot",
+    "github copilot",
+    "ai",
+    "chat",
+    "session management",
+    "context preservation"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "copilot-handoff.showSessionInfo",
+        "title": "Copilot Handoff: Show Session Info"
+      },
+      {
+        "command": "copilot-handoff.exportContext",
+        "title": "Copilot Handoff: Export Chat Context"
+      },
+      {
+        "command": "copilot-handoff.resetSession",
+        "title": "Copilot Handoff: Reset Session Timer"
+      },
+      {
+        "command": "copilot-handoff.toggleTracking",
+        "title": "Copilot Handoff: Toggle Tracking"
+      }
+    ],
+    "configuration": {
+      "title": "Copilot Handoff",
+      "properties": {
+        "copilot-handoff.sessionThresholdMinutes": {
+          "type": "number",
+          "default": 30,
+          "minimum": 5,
+          "maximum": 180,
+          "description": "Minutes before showing handoff reminder"
+        },
+        "copilot-handoff.notificationFrequency": {
+          "type": "string",
+          "enum": [
+            "once",
+            "periodic",
+            "never"
+          ],
+          "default": "periodic",
+          "description": "How often to show handoff reminders"
+        },
+        "copilot-handoff.periodicReminderMinutes": {
+          "type": "number",
+          "default": 10,
+          "minimum": 1,
+          "maximum": 60,
+          "description": "Minutes between periodic reminders (when periodic mode is enabled)"
+        },
+        "copilot-handoff.autoExportContext": {
+          "type": "boolean",
+          "default": false,
+          "description": "Automatically export context when handoff is triggered"
+        },
+        "copilot-handoff.showStatusBar": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show session duration in status bar"
+        },
+        "copilot-handoff.trackingEnabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable session tracking"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "node node_modules/typescript/lib/tsc.js -p ./",
+    "watch": "node node_modules/typescript/lib/tsc.js -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "node node_modules/eslint/bin/eslint.js src --ext ts",
+    "test": "node ./out/test/runTest.js",
+    "package": "echo 'Note: Requires Node 20+ for packaging. Use: node node_modules/@vscode/vsce/vsce package --no-dependencies'",
+    "publish": "echo 'Note: Requires Node 20+ and publisher access. Use: node node_modules/@vscode/vsce/vsce publish'"
+  },
+  "devDependencies": {
+    "@types/node": "^25.0.10",
+    "@types/vscode": "^1.108.1",
+    "@typescript-eslint/eslint-plugin": "^8.54.0",
+    "@typescript-eslint/parser": "^8.54.0",
+    "@vscode/test-electron": "^2.5.2",
+    "eslint": "^9.39.2",
+    "typescript": "^5.9.3",
+    "vscode-test": "^1.6.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chf3198/copilot-handoff"
+  },
+  "bugs": {
+    "url": "https://github.com/chf3198/copilot-handoff/issues"
+  },
+  "homepage": "https://github.com/chf3198/copilot-handoff#readme",
+  "license": "MIT",
+  "icon": "images/icon.png"
+}
