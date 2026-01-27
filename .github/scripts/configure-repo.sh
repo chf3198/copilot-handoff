@@ -35,7 +35,7 @@ echo "------------------------------------------------"
 read -p "Make repository public? (y/N): " -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-    gh repo edit "$REPO" --visibility public
+    gh repo edit "$REPO" --visibility public --accept-visibility-change-consequences
     echo "✅ Repository is now public"
 else
     echo "⏭️  Skipped making repository public"
