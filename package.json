@@ -2,10 +2,11 @@
   "name": "copilot-handoff",
   "displayName": "Copilot Handoff",
   "description": "🤝 Track GitHub Copilot chat session duration and get timely reminders for context-preserving handoffs. Prevent context degradation!",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "publisher": "curtisfranks",
   "engines": {
-    "vscode": "^1.85.0"
+    "vscode": "^1.108.0",
+    "node": ">=20.0.0"
   },
   "categories": [
     "Other",
@@ -24,7 +25,29 @@
   ],
   "main": "./out/extension.js",
   "contributes": {
+    "chatParticipants": [
+      {
+        "id": "handoff",
+        "name": "handoff",
+        "description": "Analyze chat health and export context for handoffs",
+        "isSticky": false,
+        "commands": [
+          {
+            "name": "analyze",
+            "description": "Analyze current chat health and context quality"
+          },
+          {
+            "name": "export",
+            "description": "Export chat context for handoff to new session"
+          }
+        ]
+      }
+    ],
     "commands": [
+      {
+        "command": "copilot-handoff.checkChatHealth",
+        "title": "Copilot Handoff: Check Chat Health"
+      },
       {
         "command": "copilot-handoff.showSessionInfo",
         "title": "Copilot Handoff: Show Session Info"

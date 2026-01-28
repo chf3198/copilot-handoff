@@ -18,6 +18,7 @@ suite('Extension Test Suite', () => {
     test('Commands should be registered', async () => {
         const commands = await vscode.commands.getCommands();
         const extensionCommands = [
+            'copilot-handoff.checkChatHealth',
             'copilot-handoff.showSessionInfo',
             'copilot-handoff.exportContext',
             'copilot-handoff.resetSession',

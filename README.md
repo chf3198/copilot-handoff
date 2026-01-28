@@ -182,22 +182,23 @@ code --install-extension copilot-handoff-*.vsix
 
 1. **Install the extension** (see above)
 2. **Reload VS Code** if prompted
-3. **Look for the clock icon** ⏰ in the status bar (bottom-right)
-4. **Click the icon** to see your current session info
+3. **Look for the $(pulse) Check Chat Health button** in the status bar (bottom-right)
+4. **Click the button** or type `@handoff analyze` in Copilot Chat to check chat health
 
-That's it! The extension is now tracking your session.
+That's it! The extension is ready to analyze your Copilot chats.
 
-### Your First Handoff
+### Your First Health Check
 
-1. Work for 30+ minutes (or your configured threshold)
-2. See a notification: *"Copilot session has been active for 30m..."*
-3. Click **"Export Context"**
-4. Choose your preferred format:
-   - 📋 **Copy to Clipboard** - Quick summary
-   - 💾 **Save to File** - Full markdown document
-   - 📝 **Create Handoff Document** - Structured template
-5. Fill in the template sections if using handoff document
-6. Click **"Reset Session"** to start fresh
+1. Open Copilot Chat and start a conversation with Copilot
+2. After several exchanges, click the **$(pulse) Check Chat Health** button in status bar
+3. Chat opens with `@handoff analyze` pre-filled
+4. Press **Enter** to see your chat health report with:
+   - Overall health score (0-100)
+   - Message count and token usage
+   - Issues detected (if any)
+   - Recommendations
+5. If score is below 70, click **Export Context for Handoff** button
+6. Start a fresh chat with exported context as reference
 
 ---
 
@@ -209,6 +210,7 @@ Access all features via the **Command Palette** (`Ctrl+Shift+P` / `Cmd+Shift+P`)
 
 | Command | Description | When to Use |
 |---------|-------------|-------------|
+| `Copilot Handoff: Check Chat Health` | Open chat with @handoff analyze pre-filled | Quick access to health analysis |
 | `Copilot Handoff: Show Session Info` | View detailed session information | Check current session status anytime |
 | `Copilot Handoff: Export Chat Context` | Export context with format options | Before breaks, context switches, or handoffs |
 | `Copilot Handoff: Reset Session Timer` | Manually reset the timer | After a handoff or when starting fresh work |
@@ -216,11 +218,26 @@ Access all features via the **Command Palette** (`Ctrl+Shift+P` / `Cmd+Shift+P`)
 
 ### Status Bar
 
-The status bar item shows:
-- ⏰ **Icon** indicating active tracking
-- **Duration** in minutes or hours (e.g., `25m` or `1h 15m`)
-- **Click** to view session details
-- **Hover** for quick info tooltip
+The status bar item provides quick access to chat health analysis:
+- $(pulse) **"Check Chat Health"** button always visible
+- **Click** to open Copilot Chat with `@handoff analyze` pre-filled
+- **Press Enter** to analyze your current chat's context quality
+- **Hover** for quick tooltip explaining functionality
+
+### @handoff Chat Participant
+
+Use the `@handoff` participant directly in Copilot Chat:
+
+| Command | Description | When to Use |
+|---------|-------------|-------------|
+| `@handoff analyze` | Analyze current chat health with scoring | Check if chat context is degrading |
+| `@handoff export` | Export context for handoff | Before starting a fresh chat session |
+
+**Health Scoring:** Analyzes message count, token usage (if available), and context quality. Shows:
+- **Excellent (90-100)**: Chat is healthy, continue working
+- **Good (70-89)**: Chat is fine, monitor for quality issues
+- **Fair (50-69)**: Consider a handoff soon
+- **Poor (<50)**: Immediate handoff recommended - context degradation likely affecting quality
 
 ---
 
