@@ -1,133 +1,49 @@
-<div align="center">
-
-# 🤝 Copilot Handoff
-
-<img src="images/icon.png" alt="Copilot Handoff Logo" width="128" height="128">
-
-### Track GitHub Copilot chat session duration and get timely reminders for context-preserving handoffs
+# Copilot Handoff
 
 [![VS Code Marketplace](https://img.shields.io/visual-studio-marketplace/v/curtisfranks.copilot-handoff?style=for-the-badge&logo=visual-studio-code&logoColor=white&color=0078d7)](https://marketplace.visualstudio.com/items?itemName=curtisfranks.copilot-handoff)
 [![Downloads](https://img.shields.io/visual-studio-marketplace/d/curtisfranks.copilot-handoff?style=for-the-badge&color=success)](https://marketplace.visualstudio.com/items?itemName=curtisfranks.copilot-handoff)
 [![Rating](https://img.shields.io/visual-studio-marketplace/r/curtisfranks.copilot-handoff?style=for-the-badge&color=yellow)](https://marketplace.visualstudio.com/items?itemName=curtisfranks.copilot-handoff)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
+[![CI](https://img.shields.io/github/actions/workflow/status/chf3198/copilot-handoff/ci.yml?branch=main&style=for-the-badge&label=CI)](https://github.com/chf3198/copilot-handoff/actions)
+[![License: PolyForm NC](https://img.shields.io/badge/License-PolyForm%20NC%201.0-blue.svg?style=for-the-badge)](LICENSE)
 
-[![CI Status](https://img.shields.io/github/actions/workflow/status/chf3198/copilot-handoff/ci.yml?branch=main&style=for-the-badge&label=CI)](https://github.com/chf3198/copilot-handoff/actions)
-[![GitHub Issues](https://img.shields.io/github/issues/chf3198/copilot-handoff?style=for-the-badge)](https://github.com/chf3198/copilot-handoff/issues)
-[![GitHub Stars](https://img.shields.io/github/stars/chf3198/copilot-handoff?style=for-the-badge)](https://github.com/chf3198/copilot-handoff/stargazers)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=for-the-badge)](CONTRIBUTING.md)
+**Copilot Handoff** is a VS Code extension that tracks how long you have been in a GitHub Copilot Chat session and reminds you when to start a fresh conversation. Long AI chat sessions degrade context quality — responses become less accurate as the context window fills with older, less relevant information. The extension shows session duration in the status bar, sends configurable reminders at your chosen threshold, and exports a structured handoff document so your next session has full context on what you were working on. Built with TypeScript and the VS Code Extension API.
 
-**[Features](#-features)** • 
-**[Installation](#-installation)** • 
-**[Usage](#-usage)** • 
-**[Configuration](#%EF%B8%8F-configuration)** • 
-**[Contributing](CONTRIBUTING.md)** • 
-**[Roadmap](.github/ROADMAP.md)**
-
-</div>
+[Features](#key-features) · [Installation](#installation) · [Usage](#usage) · [Configuration](#configuration) · [Contributing](CONTRIBUTING.md) · [Roadmap](.github/ROADMAP.md)
 
 ---
 
-## 📖 Table of Contents
+## Why Copilot Handoff?
 
-- [Why Copilot Handoff?](#-why-copilot-handoff)
-- [Key Features](#-key-features)
-- [Demo](#-demo)
-- [Installation](#-installation)
-- [Quick Start](#-quick-start)
-- [Detailed Usage](#-detailed-usage)
-- [Configuration](#%EF%B8%8F-configuration)
-- [Use Cases](#-use-cases)
-- [Why Context Handoffs Matter](#-why-context-handoffs-matter)
-- [Requirements](#-requirements)
-- [FAQs](#-frequently-asked-questions)
-- [Contributing](#-contributing)
-- [Support](#-support)
-- [License](#-license)
-
----
-
----
-
-## 🌟 Why Copilot Handoff?
-
-<table>
-<tr>
-<td width="50%">
-
-### The Problem 😓
+### The Problem
 
 Long AI chat sessions lead to:
-- **Context degradation** over time
-- **Less accurate responses** as context accumulates
-- **Lost decisions** and important insights
+- **Context degradation** over time — the model loses track of earlier decisions
+- **Less accurate responses** as irrelevant history accumulates in the context window
+- **Lost decisions** and important insights that fall off the edge
 - **Difficulty resuming** work after breaks
-- **Unclear handoffs** between team members
 
-</td>
-<td width="50%">
+### The Solution
 
-### The Solution ✨
-
-Copilot Handoff provides:
-- **Automatic session tracking** in the background
-- **Smart reminders** at the right time
-- **Easy context preservation** with one click
-- **Structured handoff templates** for clarity
-- **Fully customizable** to your workflow
-
-</td>
-</tr>
-</table>
-
-### Core Benefits
-
-| Feature | Benefit |
-|---------|---------|
-| ⏰ **Session Duration Tracking** | Know exactly how long you've been in a conversation |
-| 🔔 **Smart Notifications** | Get reminded before context degrades too much |
-| 📋 **Context Export** | Save your conversation state with structured templates |
-| 💾 **Persistent State** | Sessions survive VS Code restarts |
-| ⚙️ **Configurable** | Adjust thresholds and behaviors to your needs |
-| 🚀 **Zero Setup** | Works out of the box with sensible defaults |
+- **Automatic session tracking** in the background — no manual action needed
+- **Smart reminders** at the threshold you choose (default: 30 minutes)
+- **Context export** with one click — structured Markdown document or clipboard copy
+- **`@handoff` chat participant** for in-chat health analysis and on-demand export
 
 ---
 
-## ✨ Key Features
+## Key Features
 
-### 🎯 Session Tracking
-
-The extension automatically monitors your Copilot usage and tracks session duration with:
-- Real-time status bar display
-- Persistent state across VS Code restarts
-- Intelligent inactivity detection (auto-resets after 5 minutes of inactivity)
-
-![Status Bar](https://via.placeholder.com/600x100/1e1e1e/ffffff?text=Status+Bar+Preview)
-
-### 📢 Smart Notifications
-
-Get notified when your session exceeds the configured threshold:
-- **Once mode**: Single reminder per session
-- **Periodic mode**: Regular reminders at customizable intervals
-- **Never mode**: Tracking without notifications
-
-![Notification](https://via.placeholder.com/600x150/1e1e1e/ffffff?text=Notification+Preview)
-
-### 📝 Context Preservation
-
-When it's time for a handoff, export your context in multiple ways:
-- **Copy to Clipboard**: Quick context summary
-- **Save to File**: Markdown document with full details
-- **Handoff Template**: Structured document with sections for tasks, decisions, and next steps
-
-![Export Options](https://via.placeholder.com/600x200/1e1e1e/ffffff?text=Export+Options+Preview)
+| Feature | Description |
+|---------|-------------|
+| **Session Duration Tracking** | Real-time status bar display. Persists across VS Code restarts. Inactivity auto-reset after 5 minutes. |
+| **Smart Notifications** | Configurable reminder modes: once at threshold, periodic at intervals, or never (tracking only). |
+| **Context Export** | Save session state as a structured Markdown handoff document, copy to clipboard, or use a guided template with sections for tasks, decisions, and next steps. |
+| **@handoff Chat Participant** | `@handoff analyze` scores your chat health (0–100) with recommendations. `@handoff export` exports context to a new session. |
+| **Fully Configurable** | Five settings control all thresholds and behaviors. |
 
 ---
 
-## 🎬 Demo
-
-> **Coming Soon:** Video demonstration showing the complete workflow
-
-### How It Works
+## How It Works
 
 ```mermaid
 graph LR
@@ -143,487 +59,228 @@ graph LR
     F --> H[Continue Fresh Session]
 ```
 
-### Typical Workflow
+### Health Scoring
 
-1. **🚀 Start Working** - Extension automatically begins tracking
-2. **⏱️ Time Passes** - Duration shown in status bar
-3. **🔔 Get Notified** - Reminder appears at your threshold (default: 30 min)
-4. **📋 Export Context** - Save your work, decisions, and next steps
-5. **🔄 Start Fresh** - Begin a new session with clear context
+`@handoff analyze` scores your current chat session:
+
+| Score | Status | Recommendation |
+|-------|--------|----------------|
+| 90–100 | 🟢 Excellent | Chat is healthy — continue working |
+| 70–89 | 🟡 Good | Monitor for quality issues |
+| 50–69 | 🟠 Fair | Consider a handoff soon |
+| < 50 | 🔴 Poor | Immediate handoff recommended |
 
 ---
 
-## 📦 Installation
+## Installation
 
-### From VS Code Marketplace (Recommended)
+**From VS Code Marketplace (recommended)**
 
-1. Open **Extensions** view in VS Code (`Ctrl+Shift+X` / `Cmd+Shift+X`)
+1. Open the Extensions view (`Ctrl+Shift+X` / `Cmd+Shift+X`)
 2. Search for **"Copilot Handoff"**
 3. Click **Install**
 
-### From Command Palette
+**From Command Palette**
 
-1. Press `Ctrl+P` / `Cmd+P`
-2. Type: `ext install curtisfranks.copilot-handoff`
-3. Press **Enter**
+Press `Ctrl+P` → type `ext install curtisfranks.copilot-handoff` → Enter
 
-### Manual Installation
+**Manual**
 
-Download the `.vsix` file from [Releases](https://github.com/chf3198/copilot-handoff/releases) and install via:
+Download the `.vsix` from [Releases](https://github.com/chf3198/copilot-handoff/releases):
+
 ```bash
 code --install-extension copilot-handoff-*.vsix
 ```
 
 ---
 
-## 🚀 Quick Start
-
-### First Time Setup
-
-1. **Install the extension** (see above)
-2. **Reload VS Code** if prompted
-3. **Look for the $(pulse) Check Chat Health button** in the status bar (bottom-right)
-4. **Click the button** or type `@handoff analyze` in Copilot Chat to check chat health
-
-That's it! The extension is ready to analyze your Copilot chats.
-
-### Your First Health Check
-
-1. Open Copilot Chat and start a conversation with Copilot
-2. After several exchanges, click the **$(pulse) Check Chat Health** button in status bar
-3. Chat opens with `@handoff analyze` pre-filled
-4. Press **Enter** to see your chat health report with:
-   - Overall health score (0-100)
-   - Message count and token usage
-   - Issues detected (if any)
-   - Recommendations
-5. If score is below 70, click **Export Context for Handoff** button
-6. Start a fresh chat with exported context as reference
-
----
-
-## 📚 Detailed Usage
-
-### Commands
-
-Access all features via the **Command Palette** (`Ctrl+Shift+P` / `Cmd+Shift+P`):
-
-| Command | Description | When to Use |
-|---------|-------------|-------------|
-| `Copilot Handoff: Check Chat Health` | Open chat with @handoff analyze pre-filled | Quick access to health analysis |
-| `Copilot Handoff: Show Session Info` | View detailed session information | Check current session status anytime |
-| `Copilot Handoff: Export Chat Context` | Export context with format options | Before breaks, context switches, or handoffs |
-| `Copilot Handoff: Reset Session Timer` | Manually reset the timer | After a handoff or when starting fresh work |
-| `Copilot Handoff: Toggle Tracking` | Enable/disable session tracking | Temporarily pause tracking |
+## Usage
 
 ### Status Bar
 
-The status bar item provides quick access to chat health analysis:
-- $(pulse) **"Check Chat Health"** button always visible
-- **Click** to open Copilot Chat with `@handoff analyze` pre-filled
-- **Press Enter** to analyze your current chat's context quality
-- **Hover** for quick tooltip explaining functionality
+The **$(pulse) Check Chat Health** button is always visible in the status bar. Click it to open Copilot Chat with `@handoff analyze` pre-filled. Press Enter to see your health report.
+
+### Commands
+
+Access all features via the Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`):
+
+| Command | Description |
+|---------|-------------|
+| `Copilot Handoff: Check Chat Health` | Open chat with `@handoff analyze` pre-filled |
+| `Copilot Handoff: Show Session Info` | View detailed session information |
+| `Copilot Handoff: Export Chat Context` | Export context with format options |
+| `Copilot Handoff: Reset Session Timer` | Manually reset the timer |
+| `Copilot Handoff: Toggle Tracking` | Enable/disable session tracking |
 
 ### @handoff Chat Participant
 
-Use the `@handoff` participant directly in Copilot Chat:
+| Command | Description |
+|---------|-------------|
+| `@handoff analyze` | Analyze current chat health with 0–100 scoring |
+| `@handoff export` | Export context for handoff to a new session |
 
-| Command | Description | When to Use |
-|---------|-------------|-------------|
-| `@handoff analyze` | Analyze current chat health with scoring | Check if chat context is degrading |
-| `@handoff export` | Export context for handoff | Before starting a fresh chat session |
+### Context Export Format
 
-**Health Scoring:** Analyzes message count, token usage (if available), and context quality. Shows:
-- **Excellent (90-100)**: Chat is healthy, continue working
-- **Good (70-89)**: Chat is fine, monitor for quality issues
-- **Fair (50-69)**: Consider a handoff soon
-- **Poor (<50)**: Immediate handoff recommended - context degradation likely affecting quality
+Exported handoff documents include:
 
----
-
-## ⚙️ Configuration
+- **Session metadata** — timestamp, workspace, current file
+- **Working state** — active files, selections, language
+- **Guided sections** — what I was working on, key decisions made, next steps, important context notes
 
 ---
 
-## ⚙️ Configuration
+## Configuration
 
-Customize every aspect in **VS Code Settings** (`Ctrl+,` / `Cmd+,`). Search for `copilot-handoff`:
-
-### All Settings
+Customize all settings in VS Code Settings (`Ctrl+,` / `Cmd+,`). Search for `copilot-handoff`:
 
 | Setting | Type | Default | Description |
 |---------|------|---------|-------------|
-| `sessionThresholdMinutes` | number | `30` | Minutes before showing handoff reminder (5-180) |
+| `sessionThresholdMinutes` | number | `30` | Minutes before showing handoff reminder (5–180) |
 | `notificationFrequency` | string | `periodic` | When to show reminders: `once`, `periodic`, or `never` |
-| `periodicReminderMinutes` | number | `10` | Minutes between periodic reminders (1-60) |
-| `autoExportContext` | boolean | `false` | Automatically export context when handoff is triggered |
+| `periodicReminderMinutes` | number | `10` | Minutes between periodic reminders (1–60) |
+| `autoExportContext` | boolean | `false` | Automatically export context when handoff triggers |
 | `showStatusBar` | boolean | `true` | Show session duration in status bar |
 | `trackingEnabled` | boolean | `true` | Enable/disable session tracking |
 
 ### Configuration Examples
 
-#### Conservative (Less Interruption)
+**Conservative (less interruption)**
 ```jsonc
 {
-  "copilot-handoff.sessionThresholdMinutes": 60,  // 1 hour
+  "copilot-handoff.sessionThresholdMinutes": 60,
   "copilot-handoff.notificationFrequency": "once",
   "copilot-handoff.showStatusBar": true
 }
 ```
 
-#### Aggressive (Frequent Handoffs)
+**Aggressive (frequent handoffs)**
 ```jsonc
 {
-  "copilot-handoff.sessionThresholdMinutes": 15,  // 15 minutes
+  "copilot-handoff.sessionThresholdMinutes": 15,
   "copilot-handoff.notificationFrequency": "periodic",
   "copilot-handoff.periodicReminderMinutes": 5
 }
 ```
 
-#### Silent Mode (Tracking Only)
+**Silent (tracking only)**
 ```jsonc
 {
   "copilot-handoff.notificationFrequency": "never",
-  "copilot-handoff.showStatusBar": true  // Still see status
+  "copilot-handoff.showStatusBar": true
 }
 ```
 
+### Best Practices
+
+1. **Set realistic thresholds** — default 30 minutes works well; adjust to your session rhythm
+2. **Use periodic reminders** — keeps context fresh without a single hard stop
+3. **Export before breaks** — save context before stepping away from a complex problem
+4. **Document decisions** — use the handoff template to capture key choices, not just state
+
 ---
 
-## 🎯 Use Cases
+## Use Cases
 
 ### Individual Developers
 
-**Long Coding Sessions**
-- Get reminded to take breaks
-- Preserve context before switching tasks
-- Document decisions during extended sessions
-
-**Context Switching**
-- Export context when moving between projects
-- Save state before meetings or interruptions
-- Resume work with clear notes
+- **Long sessions** — get reminded to take breaks and preserve context before it degrades
+- **Context switching** — export state before moving between projects or tasks
+- **After breaks** — resume with a structured notes document instead of reconstructing context
 
 ### Team Collaboration
 
-**Pair Programming Handoffs**
-- Export session context for partner
-- Document decisions made during pairing
-- Preserve context across shifts
-
-**Code Reviews**
-- Export chat context for PR description
-- Share AI-assisted insights with team
-- Document rationale for changes
-
-### Learning & Documentation
-
-**Tutorial Creation**
-- Export conversation as learning material
-- Document problem-solving approaches
-- Create step-by-step guides from sessions
-
-**Knowledge Preservation**
-- Save important AI responses
-- Build personal knowledge base
-- Create reference documentation
+- **Pair programming handoffs** — export session context for your partner
+- **Code reviews** — export AI-assisted reasoning as PR description material
+- **Knowledge preservation** — save important AI responses and decision rationale
 
 ---
 
-## 💡 Why Context Handoffs Matter
+## Requirements
 
-### The Science Behind It
-
-Research shows that AI chat models perform best with focused, time-limited conversations:
-
-| Session Length | Context Quality | Response Accuracy |
-|---------------|----------------|-------------------|
-| 0-30 min | 🟢 Excellent | 95%+ |
-| 30-60 min | 🟡 Good | 85-95% |
-| 60-120 min | 🟠 Declining | 70-85% |
-| 120+ min | 🔴 Poor | <70% |
-
-*Note: These are approximate values based on general AI behavior patterns*
-
-### Benefits of Regular Handoffs
-
-<table>
-<tr>
-<td width="33%">
-
-#### 🎯 Better AI Performance
-- **Focused context** leads to more accurate responses
-- **Reduced confusion** from accumulated information
-- **Faster response times** with cleaner context
-
-</td>
-<td width="33%">
-
-#### 📝 Documentation
-- **Automatic records** of decisions and progress
-- **Searchable history** of work sessions
-- **Team knowledge** sharing
-
-</td>
-<td width="33%">
-
-#### 🧘 Developer Wellbeing
-- **Natural break points** in work
-- **Reduced cognitive load** from context management
-- **Better work-life balance** with clear sessions
-
-</td>
-</tr>
-</table>
+| Requirement | Version |
+|------------|---------|
+| VS Code | 1.85.0+ |
+| GitHub Copilot | Any (recommended, not required) |
+| Platform | Windows, macOS, Linux |
 
 ---
 
-## 📋 Requirements
-
-| Requirement | Version | Notes |
-|------------|---------|-------|
-| **VS Code** | 1.85.0+ | Required for extension APIs |
-| **GitHub Copilot** | Any | Recommended but not required |
-| **Node.js** | - | Not needed for users |
-| **Platform** | Any | Windows, macOS, Linux |
-
----
-
-## ❓ Frequently Asked Questions
-
-<details>
-<summary><strong>Does this extension collect any data?</strong></summary>
-
-No. Copilot Handoff:
-- ✅ Stores session timing locally only
-- ✅ Never transmits any data
-- ✅ Never reads your code or chat content
-- ✅ Only tracks duration, not content
-
-</details>
-
-<details>
-<summary><strong>Will this interrupt my workflow?</strong></summary>
-
-No. The extension is designed to be non-intrusive:
-- Notifications can be dismissed or snoozed
-- You can set to "never" mode for silent tracking
-- Status bar can be hidden if desired
-- All features are optional
-
-</details>
-
-<details>
-<summary><strong>Do I need GitHub Copilot installed?</strong></summary>
-
-No, but it's recommended. The extension:
-- Works independently of Copilot
-- Tracks general editor activity
-- Useful for any coding sessions
-- Designed with Copilot users in mind
-
-</details>
-
-<details>
-<summary><strong>How does session tracking work?</strong></summary>
-
-The extension monitors:
-- Editor activity (file edits, opens)
-- Window focus
-- User interactions
-- Auto-resets after 5 minutes of inactivity
-
-It does NOT monitor chat content, only activity timing.
-
-</details>
-
-<details>
-<summary><strong>Can I customize the handoff template?</strong></summary>
-
-Currently, the template is standard but editable after export. Future versions may include:
-- Custom templates
-- Multiple template options
-- Team-shared templates
-
-See the [Roadmap](.github/ROADMAP.md) for planned features.
-
-</details>
-
-<details>
-<summary><strong>What if I forget to export context?</strong></summary>
-
-No worries! You can:
-- Manually export anytime via Command Palette
-- Check session info to see how long it's been
-- The extension reminds you periodically (if configured)
-
-</details>
-
----
-
-## 🐛 Known Issues
+## Known Issues
 
 | Issue | Workaround | Status |
 |-------|-----------|--------|
-| Session tracking uses general editor activity | Enable specific Copilot APIs when available | Planned for v0.3.0 |
-| Direct Copilot Chat API not fully accessible | Monitors all VS Code activity as proxy | Depends on VS Code API updates |
-
-See all [open issues](https://github.com/chf3198/copilot-handoff/issues) and report new ones!
+| Session tracking uses general editor activity as proxy for Copilot usage | Specific Copilot Chat API events will be used when VS Code exposes them | Planned for v0.3.0 |
+| Direct Copilot Chat API not fully accessible | All VS Code editor activity monitored as proxy | Depends on VS Code API updates |
 
 ---
 
-## 📝 Release Notes
+## Frequently Asked Questions
 
-### Version 0.1.0 (Current)
+**Does this extension collect any data?**
 
-**Initial Release** - January 26, 2026
+No. Copilot Handoff stores session timing locally only. It never transmits data, never reads your code, and never reads your chat content — only activity timing.
 
-✨ **Features**
-- Session duration tracking with persistent state
+**Will this interrupt my workflow?**
+
+The extension is non-intrusive. Notifications can be dismissed, snoozed, or set to `"never"`. The status bar can be hidden. All features are optional.
+
+**Do I need GitHub Copilot installed?**
+
+No, but it's recommended. The extension works independently, tracking general editor activity. It's designed with Copilot users in mind but useful for any long coding sessions.
+
+**Can I customize the handoff template?**
+
+Currently the template is standard but editable after export. Custom templates are planned — see the [Roadmap](.github/ROADMAP.md).
+
+**What if I forget to export context?**
+
+You can manually export anytime via the Command Palette. The extension also reminds you periodically if configured.
+
+---
+
+## Contributing
+
+Contributions are welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) to get started.
+
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/amazing-feature`
+3. Commit: `git commit -m 'Add amazing feature'`
+4. Push: `git push origin feature/amazing-feature`
+5. Open a Pull Request
+
+Please read [CODE_OF_CONDUCT.md](.github/CODE_OF_CONDUCT.md) before contributing.
+
+---
+
+## Release Notes
+
+### v0.1.0 — January 26, 2026
+
+Initial release.
+
+- Session duration tracking with persistent state across VS Code restarts
 - Smart notification system (once/periodic/never modes)
-- Context export with 3 formats (clipboard/file/template)
-- Status bar integration with real-time updates
-- Comprehensive configuration system
+- Context export with 3 formats: clipboard, file, and guided Markdown template
+- Status bar integration with real-time session duration display
+- `@handoff` chat participant with health scoring (0–100) and context export
 - 5-minute inactivity auto-reset
-
-🔧 **Technical**
-- TypeScript with strict mode
-- Full VS Code Extension API compliance
-- Zero dependencies for users
-- Cross-platform support
+- 6 configurable settings
+- TypeScript with strict mode, zero runtime dependencies
 
 See [CHANGELOG.md](CHANGELOG.md) for complete history.
 
 ---
-  "copilot-handoff.sessionThresholdMinutes": 30,
-  
-  // How often to show reminders: "once", "periodic", or "never"
-  "copilot-handoff.notificationFrequency": "periodic",
-  
-  // Minutes between periodic reminders
-  "copilot-handoff.periodicReminderMinutes": 10,
-  
-  // Automatically export context when handoff is triggered
-  "copilot-handoff.autoExportContext": false,
-  
-  // Show session duration in status bar
-  "copilot-handoff.showStatusBar": true,
-  
-  // Enable session tracking
-  "copilot-handoff.trackingEnabled": true
-}
-```
 
-## Context Export Format
+## Support
 
-The handoff template includes:
-
-- **Session metadata**: Timestamp, workspace, current file
-- **Working state**: Active files, selections, language
-- **Guided sections**:
-  - What I was working on
-  - Key decisions made
-  - Next steps
-  - Important context notes
-
-## Best Practices
-
-1. **Set realistic thresholds**: Default is 30 minutes, adjust based on your workflow
-2. **Use periodic reminders**: Keep context fresh with regular check-ins
-3. **Export before breaks**: Save context before stepping away
-4. **Document decisions**: Use the handoff template to capture important choices
-5. **Reset after handoffs**: Start fresh after exporting and switching contexts
-
-## 💡 Why Context Handoffs Matter
-
-AI chat sessions can accumulate context that becomes less relevant over time. Regular handoffs help:
-
-- ✅ Maintain AI response quality
-- ✅ Preserve important decisions and context
-- ✅ Create natural breakpoints in your workflow
-- ✅ Improve collaboration when working in teams
-- ✅ Better organize your development sessions
+- [Report an issue](https://github.com/chf3198/copilot-handoff/issues)
+- [Request a feature](https://github.com/chf3198/copilot-handoff/issues/new?template=feature_request.md)
+- [Discussions](https://github.com/chf3198/copilot-handoff/discussions)
 
 ---
 
-## 📋 Requirements
+## License
 
-- Visual Studio Code 1.85.0 or higher
-- GitHub Copilot extension (recommended, but not required)
+**[PolyForm Noncommercial 1.0.0](LICENSE)** — free for personal, educational, and non-commercial use. Commercial use requires a paid license. See [COMMERCIAL-LICENSE.md](COMMERCIAL-LICENSE.md) or contact [curtisfranks@gmail.com](mailto:curtisfranks@gmail.com).
 
----
-
-## 🐛 Known Issues
-
-- Session tracking monitors general editor activity as a proxy for Copilot usage
-- Direct Copilot Chat API events may not be fully accessible in all VS Code versions
-
-See the [issues page](https://github.com/chf3198/copilot-handoff/issues) to report problems or suggest features.
-
----
-
-## 📝 Release Notes
-
-### 0.1.0 - Initial Release
-
-- Session tracking with configurable thresholds
-- Smart notification system
-- Context export with multiple formats
-- Status bar integration
-- Comprehensive configuration options
-
-See [CHANGELOG.md](CHANGELOG.md) for full release history.
-
----
-
-## 🤝 Contributing
-
-We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
-
-**Quick Start for Contributors:**
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-Please read our [Code of Conduct](.github/CODE_OF_CONDUCT.md) before contributing.
-
----
-
-## 📜 License
-
-This extension is licensed under the [MIT License](LICENSE).
-
----
-
-## 💬 Support & Community
-
-<div align="center">
-
-### Need Help?
-
-[![GitHub Issues](https://img.shields.io/github/issues/chf3198/copilot-handoff?style=for-the-badge&logo=github)](https://github.com/chf3198/copilot-handoff/issues)
-[![GitHub Discussions](https://img.shields.io/github/discussions/chf3198/copilot-handoff?style=for-the-badge&logo=github)](https://github.com/chf3198/copilot-handoff/discussions)
-
-📧 [Report an issue](https://github.com/chf3198/copilot-handoff/issues) • 
-💡 [Request a feature](https://github.com/chf3198/copilot-handoff/issues/new?template=feature_request.md) • 
-📖 [Read the docs](https://github.com/chf3198/copilot-handoff#readme)
-
-</div>
-
----
-
-<div align="center">
-
-### ⭐ Show Your Support
-
-If this extension helps you maintain better Copilot sessions, please consider:
-- ⭐ [Starring the repo](https://github.com/chf3198/copilot-handoff)
-- 📢 Sharing with your team
-- 💬 Leaving a review on the [marketplace](https://marketplace.visualstudio.com/items?itemName=curtisfranks.copilot-handoff)
-
-**Made with ❤️ for the VS Code community**
-
-</div>
+© 2026 Curtis Franks
