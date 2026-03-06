@@ -1,33 +1,58 @@
-# Copilot Handoff
+<div align="center">
+
+# 🤝 Copilot Handoff
+
+<img src="images/icon.png" alt="Copilot Handoff Logo" width="128" height="128">
+
+### Track GitHub Copilot chat session duration and get timely reminders for context-preserving handoffs
 
 [![VS Code Marketplace](https://img.shields.io/visual-studio-marketplace/v/curtisfranks.copilot-handoff?style=for-the-badge&logo=visual-studio-code&logoColor=white&color=0078d7)](https://marketplace.visualstudio.com/items?itemName=curtisfranks.copilot-handoff)
 [![Downloads](https://img.shields.io/visual-studio-marketplace/d/curtisfranks.copilot-handoff?style=for-the-badge&color=success)](https://marketplace.visualstudio.com/items?itemName=curtisfranks.copilot-handoff)
 [![Rating](https://img.shields.io/visual-studio-marketplace/r/curtisfranks.copilot-handoff?style=for-the-badge&color=yellow)](https://marketplace.visualstudio.com/items?itemName=curtisfranks.copilot-handoff)
-[![CI](https://img.shields.io/github/actions/workflow/status/chf3198/copilot-handoff/ci.yml?branch=main&style=for-the-badge&label=CI)](https://github.com/chf3198/copilot-handoff/actions)
 [![License: PolyForm NC](https://img.shields.io/badge/License-PolyForm%20NC%201.0-blue.svg?style=for-the-badge)](LICENSE)
 
-**Copilot Handoff** is a VS Code extension that tracks how long you have been in a GitHub Copilot Chat session and reminds you when to start a fresh conversation. Long AI chat sessions degrade context quality — responses become less accurate as the context window fills with older, less relevant information. The extension shows session duration in the status bar, sends configurable reminders at your chosen threshold, and exports a structured handoff document so your next session has full context on what you were working on. Built with TypeScript and the VS Code Extension API.
+[![CI Status](https://img.shields.io/github/actions/workflow/status/chf3198/copilot-handoff/ci.yml?branch=main&style=for-the-badge&label=CI)](https://github.com/chf3198/copilot-handoff/actions)
+[![GitHub Issues](https://img.shields.io/github/issues/chf3198/copilot-handoff?style=for-the-badge)](https://github.com/chf3198/copilot-handoff/issues)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=for-the-badge)](CONTRIBUTING.md)
 
-[Features](#key-features) · [Installation](#installation) · [Usage](#usage) · [Configuration](#configuration) · [Contributing](CONTRIBUTING.md) · [Roadmap](.github/ROADMAP.md)
+**[Features](#key-features)** · **[Installation](#installation)** · **[Usage](#usage)** · **[Configuration](#configuration)** · **[Contributing](CONTRIBUTING.md)** · **[Roadmap](.github/ROADMAP.md)**
+
+</div>
+
+---
+
+**Copilot Handoff** is a VS Code extension that tracks how long you have been in a GitHub Copilot Chat session and reminds you when to start a fresh conversation. Long AI chat sessions degrade context quality — responses become less accurate as the context window fills with older, less relevant information. The extension shows session duration in the status bar, sends configurable reminders at your chosen threshold, and exports a structured handoff document so your next session has full context on what you were working on. Built with TypeScript and the VS Code Extension API.
 
 ---
 
 ## Why Copilot Handoff?
 
-### The Problem
+<table>
+<tr>
+<td width="50%">
+
+### The Problem 😓
 
 Long AI chat sessions lead to:
 - **Context degradation** over time — the model loses track of earlier decisions
-- **Less accurate responses** as irrelevant history accumulates in the context window
+- **Less accurate responses** as irrelevant history accumulates
 - **Lost decisions** and important insights that fall off the edge
 - **Difficulty resuming** work after breaks
 
-### The Solution
+</td>
+<td width="50%">
 
-- **Automatic session tracking** in the background — no manual action needed
-- **Smart reminders** at the threshold you choose (default: 30 minutes)
-- **Context export** with one click — structured Markdown document or clipboard copy
-- **`@handoff` chat participant** for in-chat health analysis and on-demand export
+### The Solution ✨
+
+Copilot Handoff provides:
+- **Automatic session tracking** in the background
+- **Smart reminders** at the threshold you choose
+- **Context export** with one click — structured Markdown or clipboard
+- **`@handoff` chat participant** for in-chat health analysis
+
+</td>
+</tr>
+</table>
 
 ---
 
@@ -38,8 +63,8 @@ Long AI chat sessions lead to:
 | **Session Duration Tracking** | Real-time status bar display. Persists across VS Code restarts. Inactivity auto-reset after 5 minutes. |
 | **Smart Notifications** | Configurable reminder modes: once at threshold, periodic at intervals, or never (tracking only). |
 | **Context Export** | Save session state as a structured Markdown handoff document, copy to clipboard, or use a guided template with sections for tasks, decisions, and next steps. |
-| **@handoff Chat Participant** | `@handoff analyze` scores your chat health (0–100) with recommendations. `@handoff export` exports context to a new session. |
-| **Fully Configurable** | Five settings control all thresholds and behaviors. |
+| **@handoff Chat Participant** | `@handoff analyze` scores your chat health (0–100). `@handoff export` exports context for a new session. |
+| **Fully Configurable** | Six settings control all thresholds and behaviors. |
 
 ---
 
@@ -54,7 +79,7 @@ graph LR
     D --> E{User Action}
     E -->|Export Context| F[Save Handoff Document]
     E -->|Reset Timer| B
-    E -->|Remind Later| G[Snooze Notification]
+    E -->|Remind Later| G[Snooze]
     G --> B
     F --> H[Continue Fresh Session]
 ```
@@ -77,8 +102,7 @@ graph LR
 **From VS Code Marketplace (recommended)**
 
 1. Open the Extensions view (`Ctrl+Shift+X` / `Cmd+Shift+X`)
-2. Search for **"Copilot Handoff"**
-3. Click **Install**
+2. Search for **"Copilot Handoff"** and click **Install**
 
 **From Command Palette**
 
@@ -102,7 +126,7 @@ The **$(pulse) Check Chat Health** button is always visible in the status bar. C
 
 ### Commands
 
-Access all features via the Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`):
+Access all features via `Ctrl+Shift+P` / `Cmd+Shift+P`:
 
 | Command | Description |
 |---------|-------------|
@@ -148,8 +172,7 @@ Customize all settings in VS Code Settings (`Ctrl+,` / `Cmd+,`). Search for `cop
 ```jsonc
 {
   "copilot-handoff.sessionThresholdMinutes": 60,
-  "copilot-handoff.notificationFrequency": "once",
-  "copilot-handoff.showStatusBar": true
+  "copilot-handoff.notificationFrequency": "once"
 }
 ```
 
@@ -179,22 +202,6 @@ Customize all settings in VS Code Settings (`Ctrl+,` / `Cmd+,`). Search for `cop
 
 ---
 
-## Use Cases
-
-### Individual Developers
-
-- **Long sessions** — get reminded to take breaks and preserve context before it degrades
-- **Context switching** — export state before moving between projects or tasks
-- **After breaks** — resume with a structured notes document instead of reconstructing context
-
-### Team Collaboration
-
-- **Pair programming handoffs** — export session context for your partner
-- **Code reviews** — export AI-assisted reasoning as PR description material
-- **Knowledge preservation** — save important AI responses and decision rationale
-
----
-
 ## Requirements
 
 | Requirement | Version |
@@ -207,34 +214,38 @@ Customize all settings in VS Code Settings (`Ctrl+,` / `Cmd+,`). Search for `cop
 
 ## Known Issues
 
-| Issue | Workaround | Status |
-|-------|-----------|--------|
-| Session tracking uses general editor activity as proxy for Copilot usage | Specific Copilot Chat API events will be used when VS Code exposes them | Planned for v0.3.0 |
-| Direct Copilot Chat API not fully accessible | All VS Code editor activity monitored as proxy | Depends on VS Code API updates |
+| Issue | Status |
+|-------|--------|
+| Session tracking uses general editor activity as proxy for Copilot usage | Planned for v0.3.0 when VS Code exposes Copilot Chat API events |
+| Direct Copilot Chat API not fully accessible in all VS Code versions | Depends on VS Code API updates |
 
 ---
 
 ## Frequently Asked Questions
 
-**Does this extension collect any data?**
+<details>
+<summary><strong>Does this extension collect any data?</strong></summary>
 
 No. Copilot Handoff stores session timing locally only. It never transmits data, never reads your code, and never reads your chat content — only activity timing.
+</details>
 
-**Will this interrupt my workflow?**
+<details>
+<summary><strong>Will this interrupt my workflow?</strong></summary>
 
-The extension is non-intrusive. Notifications can be dismissed, snoozed, or set to `"never"`. The status bar can be hidden. All features are optional.
+No. Notifications can be dismissed, snoozed, or set to `"never"`. The status bar can be hidden. All features are optional.
+</details>
 
-**Do I need GitHub Copilot installed?**
+<details>
+<summary><strong>Do I need GitHub Copilot installed?</strong></summary>
 
-No, but it's recommended. The extension works independently, tracking general editor activity. It's designed with Copilot users in mind but useful for any long coding sessions.
+No, but it's recommended. The extension works independently, tracking general editor activity.
+</details>
 
-**Can I customize the handoff template?**
+<details>
+<summary><strong>Can I customize the handoff template?</strong></summary>
 
 Currently the template is standard but editable after export. Custom templates are planned — see the [Roadmap](.github/ROADMAP.md).
-
-**What if I forget to export context?**
-
-You can manually export anytime via the Command Palette. The extension also reminds you periodically if configured.
+</details>
 
 ---
 
@@ -244,11 +255,7 @@ Contributions are welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) to get started
 
 1. Fork the repository
 2. Create a feature branch: `git checkout -b feature/amazing-feature`
-3. Commit: `git commit -m 'Add amazing feature'`
-4. Push: `git push origin feature/amazing-feature`
-5. Open a Pull Request
-
-Please read [CODE_OF_CONDUCT.md](.github/CODE_OF_CONDUCT.md) before contributing.
+3. Commit and push, then open a Pull Request
 
 ---
 
@@ -260,12 +267,10 @@ Initial release.
 
 - Session duration tracking with persistent state across VS Code restarts
 - Smart notification system (once/periodic/never modes)
-- Context export with 3 formats: clipboard, file, and guided Markdown template
-- Status bar integration with real-time session duration display
-- `@handoff` chat participant with health scoring (0–100) and context export
+- Context export: clipboard, file, and guided Markdown template
+- `@handoff` chat participant with 0–100 health scoring
 - 5-minute inactivity auto-reset
-- 6 configurable settings
-- TypeScript with strict mode, zero runtime dependencies
+- TypeScript strict mode, zero runtime dependencies
 
 See [CHANGELOG.md](CHANGELOG.md) for complete history.
 
@@ -273,9 +278,12 @@ See [CHANGELOG.md](CHANGELOG.md) for complete history.
 
 ## Support
 
+[![GitHub Issues](https://img.shields.io/github/issues/chf3198/copilot-handoff?style=for-the-badge&logo=github)](https://github.com/chf3198/copilot-handoff/issues)
+[![GitHub Discussions](https://img.shields.io/github/discussions/chf3198/copilot-handoff?style=for-the-badge&logo=github)](https://github.com/chf3198/copilot-handoff/discussions)
+
 - [Report an issue](https://github.com/chf3198/copilot-handoff/issues)
 - [Request a feature](https://github.com/chf3198/copilot-handoff/issues/new?template=feature_request.md)
-- [Discussions](https://github.com/chf3198/copilot-handoff/discussions)
+- [Join discussions](https://github.com/chf3198/copilot-handoff/discussions)
 
 ---
 
@@ -284,3 +292,9 @@ See [CHANGELOG.md](CHANGELOG.md) for complete history.
 **[PolyForm Noncommercial 1.0.0](LICENSE)** — free for personal, educational, and non-commercial use. Commercial use requires a paid license. See [COMMERCIAL-LICENSE.md](COMMERCIAL-LICENSE.md) or contact [curtisfranks@gmail.com](mailto:curtisfranks@gmail.com).
 
 © 2026 Curtis Franks
+
+---
+
+<div align="center">
+  <sub>Made with ❤️ for the VS Code community</sub>
+</div>
