@@ -1,7 +1,7 @@
 {
   "name": "copilot-handoff",
   "displayName": "Copilot Handoff",
-  "description": "🤝 Track GitHub Copilot chat session duration and get timely reminders for context-preserving handoffs. Prevent context degradation!",
+  "description": "\ud83e\udd1d Track GitHub Copilot chat session duration and get timely reminders for context-preserving handoffs. Prevent context degradation!",
   "version": "0.2.0",
   "publisher": "curtisfranks",
   "engines": {
@@ -138,6 +138,6 @@
     "url": "https://github.com/chf3198/copilot-handoff/issues"
   },
   "homepage": "https://github.com/chf3198/copilot-handoff#readme",
-  "license": "MIT",
+  "license": "PolyForm-Noncommercial-1.0.0",
   "icon": "images/icon.png"
 }
