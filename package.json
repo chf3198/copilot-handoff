@@ -121,8 +121,8 @@
     "publish": "echo 'Note: Requires Node 20+ and publisher access. Use: node node_modules/@vscode/vsce/vsce publish'"
   },
   "devDependencies": {
-    "@types/node": "^25.0.10",
-    "@types/vscode": "^1.108.1",
+    "@types/node": "^25.5.0",
+    "@types/vscode": "^1.110.0",
     "@typescript-eslint/eslint-plugin": "^8.54.0",
     "@typescript-eslint/parser": "^8.54.0",
     "@vscode/test-electron": "^2.5.2",
